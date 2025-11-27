@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "user_organisation_role",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "organisation_id"})
+        uniqueConstraints = @UniqueConstraint(name = "uk_user_org", columnNames = {"user_id", "organisation_id"})
           )
 public class UserOrganisationRoleEntity {
 

@@ -1,12 +1,11 @@
 package com.gradlic.login.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -43,6 +42,11 @@ public class UserEntity extends BaseEntity {
     private String qrCodeSecret;
     @Column(columnDefinition = "text")
     private String qrCodeImageUri;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<UserOrganisationRoleEntity> organisations; // multi-tenant relationship
+
+    // private String roles;
 
 
 

@@ -1,25 +1,31 @@
 package com.gradlic.login.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
 @Builder
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "organisations")
 public class OrganisationEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+
+    private String code;
+
+    private String address;
+
+    @OneToMany(mappedBy = "organisation", fetch = FetchType.LAZY)
+    private List<UserOrganisationRoleEntity> users; // users assigned with roles
+
 
 
 }
